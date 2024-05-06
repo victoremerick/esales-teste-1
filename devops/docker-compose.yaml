@@ -1,0 +1,42 @@
+version: "3"
+services:
+
+  auth:
+    image: victoremerick/esales-auth:latest
+    build:
+      context: ../modules/auth
+      dockerfile: ../auth/devops/Dockerfile
+    hostname: api-auth
+    ports:
+      - "5001:5000"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "200MB"
+  order:
+    image: victoremerick/esales-order:latest
+    build:
+      context: ../modules/order
+      dockerfile: ../order/devops/Dockerfile
+    hostname: api-order
+    ports:
+      - "5002:5000"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "200MB"
+  product:
+    image: victoremerick/esales-product:latest
+    build:
+      context: ../modules/product
+      dockerfile: ../product/devops/Dockerfile
+    hostname: api-product
+    ports:
+      - "5003:5000"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "200MB"
